@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Сокращатель ссылок</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        .container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+        .row {
+            height: 100%;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .input-group-text {
+            background-color: #0d6efd;
+            border: 1px solid #0d6efd;
+            color: #FFF;
+        }
+        .form-control {
+            border: 1px solid #0d6efd;
+        }
+    </style>
+</head>
+    <body>
+        <div class = "container p-5">
+            <div class="row">
+                <h1>Сократить ссылку:</h1>
+                <form action="#" th:action="@{/short}" th:object="${newUrl}" method="post">
+
+                    <p></p>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text">Url</span>
+                            <input type="text" class="form-control" th:field="*{Url}" />
+                        </div>
+                    </div>
+
+                    <div th:if="${divResult}">
+                        <div th:if="${div}">
+                            <p class="fs-4">Сокращенная ссылка:</p>
+                            <p style="color: #0d6efd;" th:text="${resultUrl.Url}" />
+                        </div>
+                        <div th:if="${not div}">
+                            <p class="fs-4">Заданный Url не является ссылкой</p>
+                        </div>
+                    </div>
+
+                    <p></p>
+                    <button type="submit" class="btn btn-primary">Сократить</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
